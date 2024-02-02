@@ -136,7 +136,7 @@ export default {
 .container {
   margin: auto;
   
-  max-width: 50%; /* Adjust max-width based on your design */
+  max-width: 50%; 
   display: flex;
   justify-content: space-around;
   align-items: center;

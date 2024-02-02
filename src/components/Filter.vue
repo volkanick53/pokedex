@@ -119,8 +119,8 @@ export default {
 .filter-container {
   background-color: #5e5e5e;
   margin: auto;
-  max-width: 800px; /* Adjust the max-width based on your design */
-  padding: 15px; /* Adjust padding for better spacing */
+  max-width: 800px; 
+  padding: 15px; 
 }
 
 @media only screen and (max-width: 600px) {
@@ -129,7 +129,7 @@ export default {
   .search-text,
   .filter-container {
     margin: auto;
-    max-width: 100%; /* Take full width on smaller screens */
+    max-width: 100%; 
   }
 }
 @media only screen and (max-width:1280px) {

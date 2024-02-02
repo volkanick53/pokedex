@@ -142,25 +142,25 @@ span {
 
 .evo-container {
   background-color: rgb(99, 97, 97);
-  padding: 20px; /* Added padding for better spacing */
+  padding: 20px;
 }
 
 .evolution {
   display: flex;
-  flex-wrap: wrap; /* Allow items to wrap to the next line on smaller screens */
-  justify-content: space-around; /* Adjust based on your design */
+  flex-wrap: wrap; 
+  justify-content: space-around; 
   align-items: center;
 }
 
 .evo {
   margin: 10px;
-  flex: 1; /* Take up equal space in the container */
-  max-width: 300px; /* Set a maximum width for each evolution item */
+  flex: 1; 
+  max-width: 300px;
 }
 
 .evo-name {
   color: rgb(231, 229, 229);
-  text-align: center; /* Center the text */
+  text-align: center; 
 }
 
 .pokemon-number {
@@ -171,6 +171,6 @@ span {
 .image {
   border: 3px solid white;
   border-radius: 50%;
-   /* Make the image responsive within its container */
+   
 }
 </style>
