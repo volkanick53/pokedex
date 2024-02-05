@@ -104,7 +104,7 @@ export default {
             (damage) => damage.name
           );
       }
-      console.log(this.firstTypeWeakness.doubleDamageFrom);
+      
     },
 
     mainPage() {
