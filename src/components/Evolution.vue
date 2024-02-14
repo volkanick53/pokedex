@@ -2,7 +2,7 @@
   <div class="evo-container">
     <h4 class="title">Evolutions:</h4>
 
-    <div class="evolution">
+    <div class="d-flex flex-wrap justify-space-around align-center">
       <div
         v-for="(evolution, index) in evolutionDetails"
         :key="index"
@@ -143,14 +143,10 @@ span {
 .evo-container {
   background-color: rgb(99, 97, 97);
   padding: 20px;
+  margin: 0 10% 0 10% ;
 }
 
-.evolution {
-  display: flex;
-  flex-wrap: wrap; 
-  justify-content: space-around; 
-  align-items: center;
-}
+
 
 .evo {
   margin: 10px;

@@ -8,7 +8,7 @@
           </router-link>
         </v-col>
 
-        <v-col xs="12" md="6" class="text-right">
+        <v-col xs="12" md="6" >
           <router-link :to="'/favoritepokemons'">
             <v-btn color="red">
               <v-icon>mdi-heart</v-icon>
