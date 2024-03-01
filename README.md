@@ -1,4 +1,4 @@
-# pokedex
+# Pokedex
 ## Description
 A simple web page for a Pokédex that fetches data from the PokeAPI. For styling, I have chosen Vuetify. Additionally, users can save their favorite Pokémon to local storage.
 ## Future Ideas 🚀🚀
