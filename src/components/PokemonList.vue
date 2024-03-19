@@ -1,4 +1,4 @@
-<!-- src/components/PokemonList.vue -->
+
 <template>
   <div>
     <Filter
