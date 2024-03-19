@@ -50,13 +50,14 @@
         </div>
       </div>
     </div>
-
-    <div class="stat">
-      <h4>Stats:</h4>
-      <li v-for="stat in pokemon.stats" :key="stat.id">
-        {{ stat.stat.name }} - {{ stat.base_stat }}
-      </li>
+    <!--Bar Chart for Pokemon Stats-->
+    <h3>Stats</h3>
+    <div class="d-flex justify-center">
+      <div class="w-25 my-5">
+        <canvas id="baseStats"></canvas>
+      </div>
     </div>
+
     <Evolution :id="pokemon.id"></Evolution>
 
     <v-btn color="#FF3D00" class="mt-2" @click="mainPage()"
@@ -68,6 +69,7 @@
 <script>
 import axios from "axios";
 import Evolution from "./Evolution.vue";
+import Chart from "chart.js/auto";
 
 export default {
   props: ["id"],
@@ -104,11 +106,61 @@ export default {
             (damage) => damage.name
           );
       }
-      
+      this.renderChart();
     },
 
     mainPage() {
       this.$router.push("/");
+    },
+    renderChart() {
+      // Check if pokemon data is available
+      if (this.pokemon) {
+        const ctx = document.getElementById("baseStats").getContext("2d");
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: this.pokemon.stats.map((stat) => stat.stat.name),
+            datasets: [
+              {
+                label: "Base Stats",
+                data: this.pokemon.stats.map((stat) => stat.base_stat),
+                backgroundColor: [
+                  "rgba(255, 99, 132, 0.2)",
+                  "rgba(255, 159, 64, 0.2)",
+                  "rgba(255, 205, 86, 0.2)",
+                  "rgba(75, 192, 192, 0.2)",
+                  "rgba(54, 162, 235, 0.2)",
+                  "rgba(153, 102, 255, 0.2)",
+                ],
+                borderColor: [
+                  "rgb(255, 99, 132)",
+                  "rgb(255, 159, 64)",
+                  "rgb(255, 205, 86)",
+                  "rgb(75, 192, 192)",
+                  "rgb(54, 162, 235)",
+                  "rgb(153, 102, 255)",
+                ],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
+
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+      }
     },
   },
   computed: {
@@ -128,6 +180,12 @@ export default {
     const favoriteLength = this.favoritePokemons.length;
     this.$emit("favoriteEvent", favoriteLength);
   },
+  destroyed() {
+    // Destroy chart instance when component is destroyed to prevent memory leaks
+    if (this.chart) {
+      this.chart.destroy();
+    }
+  },
 };
 </script>
 
@@ -135,8 +193,8 @@ export default {
 @import "../assets/colors.css";
 .container {
   margin: auto;
-  
-  max-width: 50%; 
+
+  max-width: 50%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -156,7 +214,7 @@ li {
   background-color: #30a7d7;
   border: 1px solid;
   display: flex;
-  
+
   align-items: center;
 }
 .column {
