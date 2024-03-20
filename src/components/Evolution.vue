@@ -1,12 +1,12 @@
 <template>
-  <div class="evo-container">
-    <h4 class="title">Evolutions:</h4>
+  <div class="evo-container rounded-lg">
+    <h4 class="title">Evolutions</h4>
 
     <div class="d-flex flex-wrap justify-space-around align-center">
       <div
         v-for="(evolution, index) in evolutionDetails"
         :key="index"
-        class="evo"
+        class="evo d-flex justify-space-around align-center"
         @click="reloadPage"
       >
         <router-link :to="'/pokemon/' + evolution.id">
@@ -26,6 +26,7 @@
             </div>
           </div>
         </router-link>
+        <div v-if="index !== evolutionDetails.length - 1" class="arrow">></div>
       </div>
     </div>
   </div>
@@ -99,8 +100,11 @@ export default {
           );
           const thirdEvolution = {
             image: thirdResponse.data.sprites.front_default,
-            name: pokeEvolutionRequest.data.chain.evolves_to[0].evolves_to[0].species.name,
-            types: thirdResponse.data.types.map((typeData) => typeData.type.name),
+            name: pokeEvolutionRequest.data.chain.evolves_to[0].evolves_to[0]
+              .species.name,
+            types: thirdResponse.data.types.map(
+              (typeData) => typeData.type.name
+            ),
             id: thirdResponse.data.id,
           };
           this.evolutionDetails.push(thirdEvolution);
@@ -128,9 +132,7 @@ a {
 a:visited {
   color: black;
 }
-a h5 {
-  text-transform: uppercase;
-}
+
 span {
   font-size: 50px;
 }
@@ -141,22 +143,21 @@ span {
 }
 
 .evo-container {
-  background-color: rgb(99, 97, 97);
+  background: url(../assets/body_gray_bg.png);
   padding: 20px;
-  margin: 0 10% 0 10% ;
+  margin: 0 10% 0 10%;
 }
-
-
 
 .evo {
   margin: 10px;
-  flex: 1; 
+  flex: 1;
   max-width: 300px;
 }
 
 .evo-name {
   color: rgb(231, 229, 229);
-  text-align: center; 
+  text-align: center;
+  text-transform: capitalize;
 }
 
 .pokemon-number {
@@ -167,6 +168,12 @@ span {
 .image {
   border: 3px solid white;
   border-radius: 50%;
-   
+}
+.arrow {
+  font-size: 50px;
+  color: #fff;
+  font-family: "Vina Sans", sans-serif;
+  font-weight: bolder;
+  font-style: normal;
 }
 </style>

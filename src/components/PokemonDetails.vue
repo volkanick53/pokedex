@@ -1,68 +1,73 @@
 <template>
-  <div v-if="pokemon">
+  <div v-if="pokemon" class="pokemon-container">
     <div class="header">
       <h2>
         {{ pokemon.name }} <span class="pokemon-number">#{{ pokemon.id }}</span>
       </h2>
     </div>
-
-    <div class="container flex-md-row flex-column">
-      <div class="avatar">
-        <img :src="pokemon.sprites.front_default" />
-      </div>
-      <div class="info flex-md-row flex-column">
-        <div class="column">
-          <p>Height:</p>
-          {{ pokemon.height }}
-          <p>Weight:</p>
-          {{ pokemon.weight }}
+    <div class="max-container d-flex justify-space-around">
+      <div class="profile-container d-flex flex-column">
+        <div class="avatar">
+          <img :src="pokemon.sprites.front_default" />
         </div>
-        <div class="column">
-          <p>Abilities:</p>
-          {{ pokemon.abilities[0].ability.name }}
-          <p>Base Experience:</p>
-          {{ pokemon.base_experience }}
+        <!--Bar Chart for Pokemon Stats-->
+
+        <div class="stats">
+          <h3>Stats</h3>
+
+          <div class="my-5">
+            <canvas id="baseStats"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="info-container">
+        <div class="info flex-md-row flex-column rounded-lg">
+          <div class="column">
+            <p>Height:</p>
+            {{ pokemon.height }}
+            <p>Weight:</p>
+            {{ pokemon.weight }}
+          </div>
+          <div class="column">
+            <p>Abilities:</p>
+            {{ pokemon.abilities[0].ability.name }}
+            <p>Base Experience:</p>
+            {{ pokemon.base_experience }}
+          </div>
+        </div>
+        <div class="type-section">
+          <h3>Type</h3>
+          <div class="type-container">
+            <div
+              v-for="type in pokemon.types"
+              :key="type.id"
+              :class="'type-color-' + type.type.name"
+              class="type-pill"
+            >
+              {{ type.type.name }}
+            </div>
+          </div>
+          <h3>Weaknesses</h3>
+          <div class="type-container">
+            <div
+              v-for="weakness in mergedWeakness"
+              :key="weakness.id"
+              :class="'type-color-' + weakness"
+              class="type-pill"
+            >
+              {{ weakness }}
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <div class="bottom-section">
+      <Evolution :id="pokemon.id"></Evolution>
 
-    <div class="type-section">
-      <h3>Type</h3>
-      <div class="type-container">
-        <div
-          v-for="type in pokemon.types"
-          :key="type.id"
-          :class="'type-color-' + type.type.name"
-          class="type-pill"
-        >
-          {{ type.type.name }}
-        </div>
-      </div>
-      <h3>Weaknesses</h3>
-      <div class="type-container">
-        <div
-          v-for="weakness in mergedWeakness"
-          :key="weakness.id"
-          :class="'type-color-' + weakness"
-          class="type-pill"
-        >
-          {{ weakness }}
-        </div>
-      </div>
+      <v-btn color="#FF3D00" class="mt-2" @click="mainPage()"
+        >Explore More Pokemon</v-btn
+      >
     </div>
-    <!--Bar Chart for Pokemon Stats-->
-    <h3>Stats</h3>
-    <div class="d-flex justify-center">
-      <div class="w-25 my-5">
-        <canvas id="baseStats"></canvas>
-      </div>
-    </div>
-
-    <Evolution :id="pokemon.id"></Evolution>
-
-    <v-btn color="#FF3D00" class="mt-2" @click="mainPage()"
-      >Explore More Pokemon</v-btn
-    >
   </div>
 </template>
 
@@ -191,13 +196,22 @@ export default {
 
 <style scoped>
 @import "../assets/colors.css";
-.container {
-  margin: auto;
 
-  max-width: 50%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+.max-container {
+  margin: auto;
+  max-width: 1024px;
+  background: #fff;
+}
+
+.pokemon-container {
+  max-width: 1280px;
+  margin: auto;
+  background: #fff url(../assets/container_bg.png);
+  opacity: 1;
+  min-height: 100vh;
+}
+.bottom-section {
+  margin-top: 20%;
 }
 
 .header {

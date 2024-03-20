@@ -126,7 +126,6 @@ export default {
 
       this.filteredPokemons = [...this.pokemons];
       this.isLoading = false;
-      console.log(this.isLoading);
     },
 
     handleRegionFilter(regionFilter, lastRegion) {
