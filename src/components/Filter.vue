@@ -1,26 +1,33 @@
 <template>
-  <div class="search-bar d-flex flex-column flex-lg-row justify-center my-5 py-5 ">
-    <div class="w-lg-25 w-sm-100 mx-md-3 mb-3 mb-md-0">
-      <v-text-field
-        variant="outlined"
-        v-model="this.searchQuery"
-      ></v-text-field>
+  <div
+    class="search-container d-flex flex-column flex-lg-row justify-center my-5 py-5"
+  >
+    <!--Search Bar-->
+    <div class="d-flex flex-column w-lg-25 w-sm-100 mx-md-3 mb-3 mb-md-0">
+      <h3>Name or Number</h3>
+      <v-card-text>
+        <v-text-field
+          variant="outlined"
+          v-model="this.searchQuery"
+          append-inner-icon="mdi-magnify"
+          @click:append-inner="performSearch()"
+          bg-color="#fff"
+        ></v-text-field>
+      </v-card-text>
+
+      <p class="subtitle">
+        Use the Advanced Search to explore Pokémon by type,size and more!
+      </p>
     </div>
-    <v-btn
-      class="mx-3 my-3 my-md-0 rounded"
-      icon="mdi-magnify"
-      color="red"
-      size="large"
-      @click="performSearch()"
-    ></v-btn>
-    <div class="search-text bg-green w-lg-25 w-sm-100   mx-3 pa-6 rounded-xl">
+    <!--Green Text-->
+    <div class="bg-green w-lg-25 w-sm-100 py-6 my-6 rounded-lg">
       <p>Search for a Pokemon by name or using its National Pokedex number.</p>
     </div>
   </div>
 
   <div class="filter-container" v-if="filterSection">
     <div class="d-flex align-center">
-      <v-chip-group class="d-flex flex-wrap w-25 " multiple filter>
+      <v-chip-group class="d-flex flex-wrap w-25" multiple filter>
         <v-chip
           v-for="(type, index) in orderedTypes"
           :key="index"
@@ -34,16 +41,18 @@
           </p>
         </v-chip>
       </v-chip-group>
-      
-      
     </div>
-    <v-btn prepend-icon="mdi-magnify" class="mb-2" color="red" @click="filterByType"
+    <v-btn
+      prepend-icon="mdi-magnify"
+      class="mb-2"
+      color="red"
+      @click="filterByType"
       >Search</v-btn
     >
   </div>
 
   <v-btn color="#5e5e5e" class="mb-2" @click="filterSection = !filterSection">
-    Show Advanced Filter
+    {{ filterSection ? "Hide" : "Show" }} Advanced Filter
   </v-btn>
 </template>
 
@@ -117,29 +126,31 @@ export default {
 
 <style scoped>
 .filter-container {
-  background-color: #5e5e5e;
+  background-color: #616161;
   margin: auto;
-  max-width: 800px; 
-  padding: 15px; 
+  max-width: 800px;
+  padding: 15px;
+}
+.search-container {
+  background-color: #313131;
+}
+h3 {
+  color: #fff;
+}
+.subtitle {
+  color: #fff;
 }
 
 @media only screen and (max-width: 600px) {
-  
-
   .search-text,
   .filter-container {
     margin: auto;
-    max-width: 100%; 
+    max-width: 100%;
   }
 }
-@media only screen and (max-width:1280px) {
+@media only screen and (max-width: 1280px) {
   .w-sm-100 {
     width: 100%;
-  }
-}
-@media only screen and (min-width: 1280px) {
-  .w-lg-25 {
-    width: 25%;
   }
 }
 </style>

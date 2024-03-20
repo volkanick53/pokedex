@@ -1,11 +1,11 @@
-
 <template>
-  <div>
+  <div class="pokedex-container">
     <Filter
       :pokemons="pokemons"
       @filterEvent="handleFilteredPokemons"
       @searchEvent="handleSearch"
     ></Filter>
+
     <div class="container-fluid">
       <!-- Region Section-->
       <Region :pokemons="pokemons" @regionEvent="handleRegionFilter"></Region>
@@ -15,7 +15,7 @@
         <v-select v-model="sort" :items="sorts"></v-select>
       </div>
       <!--Loader-->
-      <v-row>        
+      <v-row>
         <v-col v-for="index in 3" :key="index" cols="12" sm="6" md="4" lg="4">
           <v-skeleton-loader
             v-if="this.isLoading"
@@ -215,8 +215,18 @@ img {
   width: 100px;
   max-width: 150px;
 }
+.pokedex-container {
+  background: #fff url(../assets/container_bg.png);
+  opacity: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
 .container-fluid {
-  margin: auto 25% auto 25%;
+  max-width: 1024px;
+  width: 100%;
+  background: #fff;
+  margin: auto;
 }
 
 a {

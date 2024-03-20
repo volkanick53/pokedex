@@ -8,7 +8,7 @@
           </router-link>
         </v-col>
 
-        <v-col xs="12" md="6" >
+        <v-col xs="12" md="6">
           <router-link :to="'/favoritepokemons'">
             <v-btn color="red">
               <v-icon>mdi-heart</v-icon>
@@ -21,7 +21,6 @@
   </v-layout>
   <router-view @favoriteEvent="handleFavoriteEvent"></router-view>
 </template>
-
 
 <script>
 import PokemonList from "./components/PokemonList.vue";
@@ -50,5 +49,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  background: #424242 url(./assets/body_bg.png);
 }
 </style>
